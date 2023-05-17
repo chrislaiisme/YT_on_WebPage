@@ -1,1 +1,40 @@
 
+<!DOCTYPE html>
+
+
+<title>
+	test
+</title>
+
+<head>
+	<style>
+		/*PUT CSS HERE*/
+		button {
+			height : 20px;
+			width : 65px;
+			
+		}
+	</style>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<div id = "dv1">
+		<input id = "yt_id" type = "text" placeholder = "Hash Code 丟這裡">
+		<button onclick = "f()"> 上傳 </button>
+	</div>
+	<br>
+	<div id = "dv2">
+		
+	</div>
+</body>
+
+<script>
+	/*PUT JAVASCRIPT HERE*/
+	function f() {
+		str = document.getElementById("yt_id").value;
+		str2 = "<iframe src = \"https://www.youtube.com/embed/" + str + "\" allowfullscreen></iframe>"
+		document.getElementById("dv2").innerHTML = str2;
+		// alert(str2);
+	}
+</script>
