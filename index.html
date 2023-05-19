@@ -9,24 +9,64 @@
 <head>
 	<style>
 		/*PUT CSS HERE*/
+		#up {
+			height: 150px;
+			background-color: #c8c8c8;
+			font-family: Comic Sans MS, Comic Sans, cursive;
+			display: flex;
+		}
+		#up1 {
+			display: flex;
+			align-items: center;
+			width: 37%;
+			font-size: 5vw;
+			padding-left: 15px;
+		}
+		#up2 {
+			color: #646464;
+			display: flex;
+			align-items: flex-end;
+			width: 15%;
+			font-size: 1.2vw;
+			padding-bottom: 15px;
+		}
+		#up3 {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			width: 45%;
+			font-size: 1.8vw;
+		}
 		button {
-			height : 20px;
-			width : 65px;
-			
+			height: 30px;
+			width: 65px;
+		}
+		body {
+			margin: 0px;
+			font-family: Consolas;
 		}
 	</style>
 	<meta charset="utf-8">
 </head>
 
 <body>
+	<div id = "up">
+		<div id = "up1">
+			<font color = red>YT&nbsp</font> on <font color = #323232>&nbspWebPage</font>
+		</div>
+		<div id = "up2">
+			Made by chrislaiisme <br> Idea from Lolita Complex
+		</div>
+		<div id = "up3">
+			將youtube影片嵌入網頁中、杜絕廣告(應該)
+		</div>
+	</div>
 	<div id = "dv1">
 		<input id = "yt_id" type = "text" placeholder = "Hash Code 丟這裡">
 		<button onclick = "f()"> 上傳 </button>
 	</div>
 	<br>
-	<div id = "dv2">
-		
-	</div>
+	<div id = "dv2"></div>
 </body>
 
 <script>
