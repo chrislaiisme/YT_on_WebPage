@@ -9,10 +9,19 @@
 <head>
 	<style>
 		/*PUT CSS HERE*/
+		body {
+			margin: 0px;
+			font-family: Comic Sans MS, Comic Sans, cursive;
+		}
+		break {
+			flex-basis: 100%;
+			width: 0px; 
+			height: 0px; 
+			overflow: hidden;
+		}
 		#up {
 			height: 150px;
 			background-color: #c8c8c8;
-			font-family: Comic Sans MS, Comic Sans, cursive;
 			display: flex;
 		}
 		#up1 {
@@ -25,10 +34,12 @@
 		#up2 {
 			color: #646464;
 			display: flex;
-			align-items: flex-end;
+			align-items: end;
+			flex-flow: row wrap;
+			align-content: flex-end;
 			width: 15%;
 			font-size: 1.2vw;
-			padding-bottom: 15px;
+			/* padding-bottom: 15px; */
 		}
 		#up3 {
 			display: flex;
@@ -37,13 +48,56 @@
 			width: 45%;
 			font-size: 1.8vw;
 		}
-		button {
-			height: 30px;
-			width: 65px;
+		#dn {
+			width: 420px;
+			position: fixed;
+			right: 20px;
+			bottom: 50px;
 		}
-		body {
-			margin: 0px;
+		#dn1 {
+			height: 120px;
+			display: flex;
+			align-items: center;
+			flex-flow: row wrap;
+			justify-content: center;
+			border: dashed red;
+		}
+		#yt_id {
+			height: 46px;
+			width: 294px;
+			font-size: 20px;
+		}
+		#btn1 {
+			height: 50px;
+			width: 100px;
+			font-size: 20px;
+		}
+		#btn2 {
+			height: 30px;
+			min-width: 100px;
+			font-size: 15px;
+		}
+		#kbd {
+			height: 0px;
+			width: 400px;
+			display: flex;
+			flex-flow: row wrap;
+			word-break: break-all;
+		}
+		.key {
 			font-family: Consolas;
+			border: 0.3rem outset #c8c8c8;
+			height: 40px;
+			width: 40px;
+			font-size: 25px;
+		}
+		.key:hover {
+			background-color: #c8c8c8;
+		}
+
+		.key:active {
+			background-color: #969696;
+			box-shadow: 0 2px #969696;
 		}
 	</style>
 	<meta charset="utf-8">
@@ -55,26 +109,85 @@
 			<font color = red>YT&nbsp</font> on <font color = #323232>&nbspWebPage</font>
 		</div>
 		<div id = "up2">
-			Made by chrislaiisme <br> Idea from Lolita Complex
+			Made by chrislaiisme
+			<break></break>
+			Idea from Lolita Complex
 		</div>
 		<div id = "up3">
-			將youtube影片嵌入網頁中、杜絕廣告(應該)
+			將youtube影片嵌入網頁、杜絕廣告(應該可以)
 		</div>
 	</div>
 	<div id = "dv1">
-		<input id = "yt_id" type = "text" placeholder = "Hash Code 丟這裡">
-		<button onclick = "f()"> 上傳 </button>
+		
 	</div>
-	<br>
-	<div id = "dv2"></div>
+	<div id = "dn">
+		<div style="color: red; font-size: 25px; text-align: center;"><b>這裡上傳影片Hash Code</b></div>
+		<br>
+		<div id = "dn1">
+			<input id = "yt_id" type = "text" placeholder = "Hash Code 丟這裡">
+			</input>
+			<button id = "btn1" onclick = "f1()"> 上傳 </button>
+			<break></break>
+			<button id = "btn2" onclick = "f2()"> 生成小鍵盤 </button>
+			<break></break>
+			<div id = "kbd"></div>
+		</div>
+	</div>
 </body>
 
 <script>
 	/*PUT JAVASCRIPT HERE*/
-	function f() {
+	function f1() {
 		str = document.getElementById("yt_id").value;
-		str2 = "<iframe src = \"https://www.youtube.com/embed/" + str + "\" allowfullscreen></iframe>"
-		document.getElementById("dv2").innerHTML = str2;
-		// alert(str2);
+		str2 = "<iframe src = \"https://www.youtube.com/embed/" + str + "\" allowfullscreen></iframe>";
+		document.getElementById("dv1").innerHTML += str2;
+	}
+
+	function f2() {
+		keybd = document.getElementById("kbd");
+		btn = document.getElementById("btn2");
+		dn1 = document.getElementById("dn1");
+		if(keybd.style.height == "0px" || keybd.style.height == "") {
+			keybd.style.height = "290px";
+			var i;
+			s1 = "<button class = \"key\" onclick = \"f3(this.textContent)\">";
+			s2 = "</button>\n";
+			for(i = 0; i < 10; i ++ ) {
+				chr1 = String.fromCharCode(48+(i+1)%10);
+				keybd.innerHTML += s1 + chr1 + s2;
+			}
+			for(i = 0; i < 26; i ++ ) {
+				chr1 = String.fromCharCode(65+i);
+				chr2 = String.fromCharCode(97+i);
+				keybd.innerHTML += s1 + chr1 + s2;
+				keybd.innerHTML += s1 + chr2 + s2;
+			}
+			keybd.innerHTML += s1 + "_" + s2;
+			keybd.innerHTML += s1 + "-" + s2;
+			keybd.innerHTML += "<button class = \"key\" onclick = \"f3(this.textContent)\" style = \"width: 150px;\">" + "BackSpace" + s2;
+			keybd.innerHTML += "<button class = \"key\" onclick = \"f3(this.textContent)\" style = \"width: 90px;\">" + "Clear" + s2;
+			btn.textContent = "逆生成小鍵盤"
+			dn1.style.height = "410px";
+		}
+		else {
+			keybd.style.height = "0px";
+			keybd.innerHTML = "";
+			btn.textContent = "生成小鍵盤"
+			dn1.style.height = "120px";
+		}
+	}
+
+	function f3(chr) {
+		// alert(chr);
+		if(chr == "BackSpace") {
+			str = document.getElementById("yt_id").value;
+			str = str.substring(0, str.length - 1);
+			document.getElementById("yt_id").value = str;
+		}
+		else if(chr == "Clear") {
+			document.getElementById("yt_id").value = "";
+		}
+		else
+			document.getElementById("yt_id").value += chr;
 	}
 </script>
